@@ -11,6 +11,7 @@ import {
   KeyboardAvoidingView,
   Platform
 } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Login: Element = () => {
   return (
@@ -45,6 +46,9 @@ const Login: Element = () => {
             <TouchableOpacity style={[styles.button, styles.buttonVolver]}>
               <Text style={styles.buttonLabel}>Volver</Text>
             </TouchableOpacity>
+          </View>
+          <View style={styles.helpContainer}>
+            <MaterialCommunityIcons name={'help'} size={40} color={'white'} />
           </View>
           <View style={{ flex: 1 }} />
         </ImageBackground>
@@ -104,7 +108,7 @@ const styles = StyleSheet.create({
     marginVertical: 10
   },
   buttonContainer: {
-    marginTop: 30,
+    marginTop: 20,
     alignItems: 'center'
   },
   button: {
@@ -113,7 +117,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     height: 45,
     width: 250,
-    borderRadius: 22
+    borderRadius: 22,
+    borderWidth: 2,
+    borderColor: 'black'
   },
   buttonLabel: {
     fontSize: 20,
@@ -127,6 +133,17 @@ const styles = StyleSheet.create({
   },
   buttonVolver: {
     backgroundColor: '#e66063'
+  },
+  helpContainer: {
+    backgroundColor: '#b1b2b5',
+    height: 60,
+    width: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'flex-end',
+    borderRadius: 30,
+    marginTop: 50,
+    marginRight: 20
   }
 });
 
