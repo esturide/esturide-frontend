@@ -38,6 +38,14 @@ const Login: Element = () => {
               <TextInput style={styles.inputBox} secureTextEntry={true} />
             </View>
           </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={[styles.button, styles.buttonIngresar]}>
+              <Text style={styles.buttonLabel}>Ingresar</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.button, styles.buttonVolver]}>
+              <Text style={styles.buttonLabel}>Volver</Text>
+            </TouchableOpacity>
+          </View>
           <View style={{ flex: 1 }} />
         </ImageBackground>
       </SafeAreaView>
@@ -66,7 +74,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#00000077',
     width: '100%',
     alignItems: 'center',
-    padding: 5
+    padding: 5,
+    marginTop: -20
   },
   title: {
     color: '#ffffff',
@@ -93,6 +102,31 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#000',
     marginVertical: 10
+  },
+  buttonContainer: {
+    marginTop: 30,
+    alignItems: 'center'
+  },
+  button: {
+    marginBottom: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    height: 45,
+    width: 250,
+    borderRadius: 22
+  },
+  buttonLabel: {
+    fontSize: 20,
+    letterSpacing: 5,
+    textAlign: 'center',
+    fontWeight: 'bold',
+    color: '#fff'
+  },
+  buttonIngresar: {
+    backgroundColor: '#0096c7'
+  },
+  buttonVolver: {
+    backgroundColor: '#e66063'
   }
 });
 
