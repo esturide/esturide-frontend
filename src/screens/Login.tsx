@@ -7,27 +7,23 @@ import {
   StyleSheet,
   ImageBackground,
   TextInput,
-  TouchableOpacity,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  TouchableHighlight
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Logo from '../components/Logo';
 
 const Login: Element = () => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <SafeAreaView style={styles.container}>
         <ImageBackground
           source={require('../../assets/fondo-peces.jpg')}
           style={styles.bgImageLayout}>
-          <View style={styles.logoContainer}>
-            <Image
-              source={require('../../assets/logo.png')}
-              style={styles.logo}
-            />
-          </View>
+          <Logo />
           <View style={styles.content}>
             <Text style={styles.title}>Bienvenido</Text>
             <View style={styles.inputContainer}>
@@ -40,16 +36,22 @@ const Login: Element = () => {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={[styles.button, styles.buttonIngresar]}>
+            <TouchableHighlight
+              style={[styles.button, styles.buttonIngresar]}
+              onPress={() => console.log('ingresar')}>
               <Text style={styles.buttonLabel}>Ingresar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[styles.button, styles.buttonVolver]}>
+            </TouchableHighlight>
+            <TouchableHighlight
+              style={[styles.button, styles.buttonVolver]}
+              onPress={() => console.log('volver')}>
               <Text style={styles.buttonLabel}>Volver</Text>
-            </TouchableOpacity>
+            </TouchableHighlight>
           </View>
-          <View style={styles.helpContainer}>
+          <TouchableHighlight
+            style={styles.helpContainer}
+            onPress={() => console.log('help')}>
             <MaterialCommunityIcons name={'help'} size={40} color={'white'} />
-          </View>
+          </TouchableHighlight>
           <View style={{ flex: 1 }} />
         </ImageBackground>
       </SafeAreaView>
@@ -65,14 +67,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end'
-  },
-  logoContainer: {
-    width: '80%',
-    alignItems: 'center'
-  },
-  logo: {
-    width: 350,
-    height: 350
   },
   content: {
     backgroundColor: '#00000077',
@@ -99,13 +93,15 @@ const styles = StyleSheet.create({
   inputBox: {
     color: '#000',
     backgroundColor: 'white',
-    height: 35,
+    height: 40,
     width: 300,
     paddingHorizontal: 15,
     borderRadius: 20,
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: '#000',
-    marginVertical: 10
+    marginVertical: 10,
+    fontSize: 15,
+    justifyContent: 'center'
   },
   buttonContainer: {
     marginTop: 20,
@@ -116,7 +112,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     height: 45,
-    width: 250,
+    width: 225,
     borderRadius: 22,
     borderWidth: 2,
     borderColor: 'black'
