@@ -3,18 +3,17 @@ import {
   SafeAreaView,
   View,
   Text,
-  Image,
   StyleSheet,
   ImageBackground,
-  TextInput,
   KeyboardAvoidingView,
   Platform,
   TouchableHighlight
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../components/Logo';
+import InputBox from '../components/InputBox';
 
-const Login: Element = () => {
+const Login = (): JSX.Element => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -26,14 +25,22 @@ const Login: Element = () => {
           <Logo />
           <View style={styles.content}>
             <Text style={styles.title}>Bienvenido</Text>
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Nombre de Usuario:</Text>
-              <TextInput style={styles.inputBox} />
-            </View>
-            <View style={styles.inputContainer}>
-              <Text style={styles.inputLabel}>Contraseña:</Text>
-              <TextInput style={styles.inputBox} secureTextEntry={true} />
-            </View>
+            <InputBox
+              label={'Nombre de Usuario:'}
+              labelStyles={styles.inputLabel}
+              inputWidth={300}
+              secureTextEntry={false}
+              marginVertical={10}
+              marginHorizontal={0}
+            />
+            <InputBox
+              label={'Contraseña:'}
+              labelStyles={styles.inputLabel}
+              inputWidth={300}
+              secureTextEntry={true}
+              marginVertical={10}
+              marginHorizontal={0}
+            />
           </View>
           <View style={styles.buttonContainer}>
             <TouchableHighlight
@@ -80,28 +87,13 @@ const styles = StyleSheet.create({
     letterSpacing: 5,
     fontSize: 40,
     fontWeight: 'bold',
-    borderColor: 'black'
-  },
-  inputContainer: {
-    marginTop: 20
+    borderColor: 'black',
+    marginBottom: 10
   },
   inputLabel: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: 20,
     letterSpacing: 5
-  },
-  inputBox: {
-    color: '#000',
-    backgroundColor: 'white',
-    height: 40,
-    width: 300,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    borderWidth: 2,
-    borderColor: '#000',
-    marginVertical: 10,
-    fontSize: 15,
-    justifyContent: 'center'
   },
   buttonContainer: {
     marginTop: 20,
