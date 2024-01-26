@@ -21,25 +21,15 @@ const UserProfile = () => {
       <TouchableHighlight
         onPress={() => console.log('account switched')}
         underlayColor={'#caf0f8'}
-        style={{marginLeft: -25}}
+        style={styles.accountBtn}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: -5}}>
+        <View style={styles.accountBtnContainer}>
           <MaterialCommunityIcons
             name={'chevron-left'}
             size={50}
             color={'black'}
           />
-          <Text
-            style={{
-              color: 'black',
-              fontSize: 30,
-              fontWeight: 'bold',
-              borderBottomWidth: 1,
-              borderBottomColor: 'black'
-            }}
-          >
-            Pasajero
-          </Text>
+          <Text style={styles.accountBtnText}>Pasajero</Text>
         </View>
       </TouchableHighlight>
     </SafeAreaView>
@@ -63,7 +53,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  switchAccount: {}
+  accountBtn: {
+    marginLeft: -30,
+    marginTop: 30
+  },
+  accountBtnContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: -5
+  },
+  accountBtnText: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+    borderBottomWidth: 1,
+    borderBottomColor: 'black'
+  }
 });
 
 export default UserProfile;
