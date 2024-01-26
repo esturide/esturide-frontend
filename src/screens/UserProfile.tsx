@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { SafeAreaView, View, Text } from 'react-native';
 
 const UserProfile = () => {
   return (
-    <View>
-      <Text>User Profile Screen</Text>
-    </View>
+    <SafeAreaView>
+      <Text>Prueba</Text>
+    </SafeAreaView>
   );
 };
 
