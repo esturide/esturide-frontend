@@ -18,13 +18,16 @@ const UserProfile = () => {
           color={'white'}
         />
       </View>
-      <TouchableHighlight>
-        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 0}}>
+      <TouchableHighlight
+        onPress={() => console.log('account switched')}
+        underlayColor={'#caf0f8'}
+        style={{marginLeft: -25}}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: -5}}>
           <MaterialCommunityIcons
             name={'chevron-left'}
-            size={60}
+            size={50}
             color={'black'}
-            style={{ marginRight: -10, padding: 0 }}
           />
           <Text
             style={{
