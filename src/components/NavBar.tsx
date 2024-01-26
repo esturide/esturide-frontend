@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import UserProfile from '../screens/UserProfile.tsx';
@@ -11,11 +11,11 @@ const NavBar = () => {
     <Tab.Navigator initialRouteName="Profile">
       <Tab.Screen
         options={{
-          title: ({ focused, color }) => (
+          title: () => (
             <MaterialCommunityIcons
               name={'help'}
               color={'white'}
-              size={35}
+              size={30}
               style={{
                 backgroundColor: '#b1b2b5',
                 padding: 10,
@@ -33,7 +33,7 @@ const NavBar = () => {
             <MaterialCommunityIcons
               name={'map-marker-outline'}
               color={'white'}
-              size={35}
+              size={30}
               style={{
                 backgroundColor: '#0077b6',
                 padding: 10,
@@ -48,14 +48,12 @@ const NavBar = () => {
       <Tab.Screen
         options={{
           title: ({ focused, color }) => (
-            <View style={{ width: 120, height: 'auto', margin: 0, padding: 0 }}>
-              <Image
+            <View style={{ width: 109, height: 'auto' }}>
+              <ImageBackground
                 source={require('../../assets/logo.png')}
                 style={{
                   width: '100%',
-                  height: '100%',
-                  padding: 0,
-                  margin: 0
+                  height: '100%'
                 }}
               />
             </View>
@@ -70,7 +68,7 @@ const NavBar = () => {
             <MaterialCommunityIcons
               name={'email-outline'}
               color={'white'}
-              size={35}
+              size={30}
               style={{
                 backgroundColor: '#0096c7',
                 padding: 10,
@@ -88,7 +86,7 @@ const NavBar = () => {
             <MaterialCommunityIcons
               name={'account-outline'}
               color={'white'}
-              size={35}
+              size={30}
               style={{
                 backgroundColor: '#00b4d8',
                 padding: 10,
