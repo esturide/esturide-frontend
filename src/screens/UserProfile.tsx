@@ -59,6 +59,9 @@ const UserProfile = () => {
         <Text style={styles.vehicleQuestion}>Quieres ser conductor?</Text>
         <Text style={styles.vehicleLink}>Registra tu vehiculo!</Text>
       </Pressable>
+      <TouchableHighlight style={styles.messageBtn}>
+        <MaterialCommunityIcons name={'message-text-outline'} size={40} color={'white'}/>
+      </TouchableHighlight>
       <View style={styles.adBanner}>
         <BannerAd
           unitId={TestIds.BANNER}
@@ -152,6 +155,17 @@ const styles = StyleSheet.create({
   adBanner: {
     position: 'absolute',
     bottom: 1
+  },
+  messageBtn: {
+    backgroundColor: '#b1b2b5',
+    height: 60,
+    width: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+    position: 'absolute',
+    top: '65%',
+    right: 10
   }
 });
 
