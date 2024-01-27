@@ -8,6 +8,11 @@ import {
   Pressable
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {
+  BannerAd,
+  BannerAdSize,
+  TestIds
+} from 'react-native-google-mobile-ads';
 
 const UserProfile = () => {
   return (
@@ -54,6 +59,12 @@ const UserProfile = () => {
         <Text style={styles.vehicleQuestion}>Quieres ser conductor?</Text>
         <Text style={styles.vehicleLink}>Registra tu vehiculo!</Text>
       </Pressable>
+      <View style={styles.adBanner}>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -137,6 +148,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textDecorationLine: 'underline',
     textDecorationColor: '#023e8a'
+  },
+  adBanner: {
+    position: 'absolute',
+    bottom: 1
   }
 });
 
