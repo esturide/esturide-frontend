@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableHighlight
+  TouchableHighlight,
+  Pressable
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -46,6 +47,13 @@ const UserProfile = () => {
           <Text style={styles.userInfoText}>$100.00</Text>
         </View>
       </View>
+      <Pressable
+        style={styles.vehicleRegister}
+        onPress={() => console.log('pressable')}
+      >
+        <Text style={styles.vehicleQuestion}>Quieres ser conductor?</Text>
+        <Text style={styles.vehicleLink}>Registra tu vehiculo!</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };
@@ -100,13 +108,9 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     elevation: 8
   },
-  nameContainer: {
-
-  },
-  codigoContainer: {
-  },
-  balanceContainer: {
-  },
+  nameContainer: {},
+  codigoContainer: {},
+  balanceContainer: {},
   userInfoTitle: {
     fontSize: 25,
     color: 'black',
@@ -116,6 +120,23 @@ const styles = StyleSheet.create({
   userInfoText: {
     color: 'black',
     fontSize: 20
+  },
+  vehicleRegister: {
+    marginTop: 45
+  },
+  vehicleQuestion: {
+    fontSize: 20,
+    letterSpacing: 3,
+    color: 'black',
+    textAlign: 'center'
+  },
+  vehicleLink: {
+    fontSize: 18,
+    letterSpacing: 3,
+    color: '#023e8a',
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    textDecorationColor: '#023e8a'
   }
 });
 
