@@ -13,17 +13,12 @@ import {
   BannerAdSize,
   TestIds
 } from 'react-native-google-mobile-ads';
+import ProfileImage from '../components/ProfileImage';
 
 const UserProfile = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.profileImage}>
-        <MaterialCommunityIcons
-          name={'account-outline'}
-          size={220}
-          color={'white'}
-        />
-      </View>
+      <ProfileImage/>
       <TouchableHighlight
         onPress={() => console.log('account switched')}
         underlayColor={'#caf0f8'}
@@ -39,15 +34,15 @@ const UserProfile = () => {
         </View>
       </TouchableHighlight>
       <View style={styles.userInfoContainer}>
-        <View style={styles.nameContainer}>
+        <View>
           <Text style={styles.userInfoTitle}>Nombre:</Text>
           <Text style={styles.userInfoText}>Gesem Hanniel Martinez Montes</Text>
         </View>
-        <View style={styles.codigoContainer}>
+        <View>
           <Text style={styles.userInfoTitle}>Codigo:</Text>
           <Text style={styles.userInfoText}>222952617</Text>
         </View>
-        <View style={styles.balanceContainer}>
+        <View>
           <Text style={styles.userInfoTitle}>Capital:</Text>
           <Text style={styles.userInfoText}>$100.00</Text>
         </View>
@@ -60,7 +55,11 @@ const UserProfile = () => {
         <Text style={styles.vehicleLink}>Registra tu vehiculo!</Text>
       </Pressable>
       <TouchableHighlight style={styles.messageBtn}>
-        <MaterialCommunityIcons name={'message-text-outline'} size={40} color={'white'}/>
+        <MaterialCommunityIcons
+          name={'message-text-outline'}
+          size={40}
+          color={'white'}
+        />
       </TouchableHighlight>
       <View style={styles.adBanner}>
         <BannerAd
@@ -77,19 +76,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#caf0f8',
     flex: 1,
     alignItems: 'center'
-  },
-  profileImage: {
-    backgroundColor: '#00b4d8',
-    width: 280,
-    height: 280,
-    borderRadius: 140,
-    borderWidth: 1,
-    borderColor: '#023e8a',
-    marginTop: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: 'black',
-    elevation: 8
   },
   accountBtn: {
     marginLeft: -30,
@@ -122,9 +108,6 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     elevation: 8
   },
-  nameContainer: {},
-  codigoContainer: {},
-  balanceContainer: {},
   userInfoTitle: {
     fontSize: 25,
     color: 'black',
@@ -154,7 +137,7 @@ const styles = StyleSheet.create({
   },
   adBanner: {
     position: 'absolute',
-    bottom: 1
+    bottom: 0
   },
   messageBtn: {
     backgroundColor: '#b1b2b5',
