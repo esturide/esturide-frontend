@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  Pressable
-} from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { SafeAreaView, View, Text, StyleSheet, Pressable } from 'react-native';
 import {
   BannerAd,
   BannerAdSize,
@@ -15,6 +7,8 @@ import {
 } from 'react-native-google-mobile-ads';
 import ProfileImage from '../components/ProfileImage';
 import AccountButton from '../components/AccountButton';
+import TextInfo from '../components/TextInfo';
+import MessageButton from '../components/MessageButton';
 
 const UserProfile = () => {
   return (
@@ -22,18 +16,9 @@ const UserProfile = () => {
       <ProfileImage bgColor={'#00b4d8'} borderColor={'#023e8a'} />
       <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
-        <View>
-          <Text style={styles.userInfoTitle}>Nombre:</Text>
-          <Text style={styles.userInfoText}>Gesem Hanniel Martinez Montes</Text>
-        </View>
-        <View>
-          <Text style={styles.userInfoTitle}>Codigo:</Text>
-          <Text style={styles.userInfoText}>222952617</Text>
-        </View>
-        <View>
-          <Text style={styles.userInfoTitle}>Capital:</Text>
-          <Text style={styles.userInfoText}>$100.00</Text>
-        </View>
+        <TextInfo title={'Nombre:'} content={'Gesem Hanniel Martinez Montes'} />
+        <TextInfo title={'Codigo:'} content={'222952617'} />
+        <TextInfo title={'Capital:'} content={'$100.00'} />
       </View>
       <Pressable
         style={styles.vehicleRegister}
@@ -42,13 +27,7 @@ const UserProfile = () => {
         <Text style={styles.vehicleQuestion}>Quieres ser conductor?</Text>
         <Text style={styles.vehicleLink}>Registra tu vehiculo!</Text>
       </Pressable>
-      <TouchableHighlight style={styles.messageBtn}>
-        <MaterialCommunityIcons
-          name={'message-text-outline'}
-          size={40}
-          color={'white'}
-        />
-      </TouchableHighlight>
+      <MessageButton />
       <View style={styles.adBanner}>
         <BannerAd
           unitId={TestIds.BANNER}
@@ -80,16 +59,6 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
     elevation: 8
   },
-  userInfoTitle: {
-    fontSize: 25,
-    color: 'black',
-    fontWeight: 'bold',
-    letterSpacing: 2
-  },
-  userInfoText: {
-    color: 'black',
-    fontSize: 20
-  },
   vehicleRegister: {
     marginTop: 45
   },
@@ -110,17 +79,6 @@ const styles = StyleSheet.create({
   adBanner: {
     position: 'absolute',
     bottom: 0
-  },
-  messageBtn: {
-    backgroundColor: '#b1b2b5',
-    height: 60,
-    width: 60,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 30,
-    position: 'absolute',
-    top: '65%',
-    right: 10
   }
 });
 
