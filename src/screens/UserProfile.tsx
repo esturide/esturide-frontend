@@ -1,14 +1,10 @@
 import React from 'react';
 import { SafeAreaView, View, Text, StyleSheet, Pressable } from 'react-native';
-import {
-  BannerAd,
-  BannerAdSize,
-  TestIds
-} from 'react-native-google-mobile-ads';
 import ProfileImage from '../components/ProfileImage';
 import AccountButton from '../components/AccountButton';
 import TextInfo from '../components/TextInfo';
 import MessageButton from '../components/MessageButton';
+import BottomAd from '../components/BottomAd';
 
 const UserProfile = () => {
   return (
@@ -28,12 +24,7 @@ const UserProfile = () => {
         <Text style={styles.vehicleLink}>Registra tu vehiculo!</Text>
       </Pressable>
       <MessageButton />
-      <View style={styles.adBanner}>
-        <BannerAd
-          unitId={TestIds.BANNER}
-          size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-        />
-      </View>
+      <BottomAd />
     </SafeAreaView>
   );
 };
@@ -75,10 +66,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textDecorationLine: 'underline',
     textDecorationColor: '#023e8a'
-  },
-  adBanner: {
-    position: 'absolute',
-    bottom: 0
   }
 });
 
