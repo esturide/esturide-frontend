@@ -18,7 +18,7 @@ import ProfileImage from '../components/ProfileImage';
 const UserProfile = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileImage/>
+      <ProfileImage bgColor={'#00b4d8'} borderColor={'#023e8a'} />
       <TouchableHighlight
         onPress={() => console.log('account switched')}
         underlayColor={'#caf0f8'}
