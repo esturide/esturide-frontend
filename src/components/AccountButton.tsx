@@ -32,8 +32,9 @@ const styles = StyleSheet.create({
   },
   accountBtnText: {
     color: 'black',
+    fontFamily: 'Poppins-Bold',
+    letterSpacing: 2,
     fontSize: 30,
-    fontWeight: 'bold',
     borderBottomWidth: 1,
     borderBottomColor: 'black'
   }
