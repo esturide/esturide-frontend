@@ -14,25 +14,13 @@ import {
   TestIds
 } from 'react-native-google-mobile-ads';
 import ProfileImage from '../components/ProfileImage';
+import AccountButton from '../components/AccountButton';
 
 const UserProfile = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ProfileImage bgColor={'#00b4d8'} borderColor={'#023e8a'} />
-      <TouchableHighlight
-        onPress={() => console.log('account switched')}
-        underlayColor={'#caf0f8'}
-        style={styles.accountBtn}
-      >
-        <View style={styles.accountBtnContainer}>
-          <MaterialCommunityIcons
-            name={'chevron-left'}
-            size={50}
-            color={'black'}
-          />
-          <Text style={styles.accountBtnText}>Pasajero</Text>
-        </View>
-      </TouchableHighlight>
+      <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
         <View>
           <Text style={styles.userInfoTitle}>Nombre:</Text>
@@ -76,22 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#caf0f8',
     flex: 1,
     alignItems: 'center'
-  },
-  accountBtn: {
-    marginLeft: -30,
-    marginVertical: 10
-  },
-  accountBtnContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: -5
-  },
-  accountBtnText: {
-    color: 'black',
-    fontSize: 30,
-    fontWeight: 'bold',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black'
   },
   userInfoContainer: {
     width: 325,
