@@ -1,4 +1,8 @@
 {
   "name": "EsturideClient",
-  "displayName": "EsturideClient"
+  "displayName": "EsturideClient",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9549836362489490~1142061784",
+    "ios_app_id": "ca-app-pub-9549836362489490~1142061784"
+  }
 }

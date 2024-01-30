@@ -17,11 +17,13 @@ const Login = (): JSX.Element => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <SafeAreaView style={styles.container}>
         <ImageBackground
           source={require('../../assets/fondo-peces.jpg')}
-          style={styles.bgImageLayout}>
+          style={styles.bgImageLayout}
+        >
           <Logo />
           <View style={styles.content}>
             <Text style={styles.title}>Bienvenido</Text>
@@ -45,18 +47,21 @@ const Login = (): JSX.Element => {
           <View style={styles.buttonContainer}>
             <TouchableHighlight
               style={[styles.button, styles.buttonIngresar]}
-              onPress={() => console.log('ingresar')}>
+              onPress={() => console.log('ingresar')}
+            >
               <Text style={styles.buttonLabel}>Ingresar</Text>
             </TouchableHighlight>
             <TouchableHighlight
               style={[styles.button, styles.buttonVolver]}
-              onPress={() => console.log('volver')}>
+              onPress={() => console.log('volver')}
+            >
               <Text style={styles.buttonLabel}>Volver</Text>
             </TouchableHighlight>
           </View>
           <TouchableHighlight
             style={styles.helpContainer}
-            onPress={() => console.log('help')}>
+            onPress={() => console.log('help')}
+          >
             <MaterialCommunityIcons name={'help'} size={40} color={'white'} />
           </TouchableHighlight>
           <View style={{ flex: 1 }} />
