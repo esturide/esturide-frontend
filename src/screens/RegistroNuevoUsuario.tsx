@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
+import { CommonActions } from '@react-navigation/native';
 
-const RegistroNuevoUsuario = () => {
+const RegistroNuevoUsuario = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../assets/cut-Bg.jpg')}
@@ -63,7 +64,7 @@ const RegistroNuevoUsuario = () => {
           </View>
         </View>
         <ButtonSiguiente />
-        <ButtonVolver />
+        <ButtonVolver pressFunc={() => navigation.dispatch(CommonActions.goBack())}/>
       </View>
     </ImageBackground>
   );
@@ -82,12 +83,12 @@ const ButtonSiguiente = () => {
     </View>
   );
 };
-const ButtonVolver = () => {
+const ButtonVolver = ({pressFunc}) => {
   return (
     <View>
       <TouchableOpacity
         style={styles.botonVolver}
-        onPress={() => alert('Estas seguro que quieres avanzar?')}>
+        onPress={pressFunc}>
         <Text style={styles.textoboton}>Volver</Text>
       </TouchableOpacity>
     </View>
