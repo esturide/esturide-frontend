@@ -49,7 +49,16 @@ const Login = ({ navigation }): JSX.Element => {
             <TouchableHighlight
               style={[styles.button, styles.buttonIngresar]}
               onPress={() => {
-                navigation.navigate("UserProfile");
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [
+                      {
+                        name: 'UserProfile'
+                      }
+                    ]
+                  })
+                );
               }}
             >
               <Text style={styles.buttonLabel}>Ingresar</Text>
