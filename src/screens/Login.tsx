@@ -12,8 +12,9 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../components/Logo';
 import InputBox from '../components/InputBox';
+import { CommonActions } from '@react-navigation/native';
 
-const Login = (): JSX.Element => {
+const Login = ({ navigation }): JSX.Element => {
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -47,13 +48,26 @@ const Login = (): JSX.Element => {
           <View style={styles.buttonContainer}>
             <TouchableHighlight
               style={[styles.button, styles.buttonIngresar]}
-              onPress={() => console.log('ingresar')}
+              onPress={() => {
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [
+                      {
+                        name: 'UserProfile'
+                      }
+                    ]
+                  })
+                );
+              }}
             >
               <Text style={styles.buttonLabel}>Ingresar</Text>
             </TouchableHighlight>
             <TouchableHighlight
               style={[styles.button, styles.buttonVolver]}
-              onPress={() => console.log('volver')}
+              onPress={() => {
+                navigation.dispatch(CommonActions.goBack());
+              }}
             >
               <Text style={styles.buttonLabel}>Volver</Text>
             </TouchableHighlight>

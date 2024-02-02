@@ -4,17 +4,19 @@ import {
   Text,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
+import { CommonActions } from '@react-navigation/native';
 
-const RegistroNuevoUsuario = () => {
+const RegistroNuevoUsuario = ({ navigation }) => {
   return (
     <ImageBackground
       source={require('../../assets/cut-Bg.jpg')}
       blurRadius={5}
-      style={styles.backgroundImage}>
+      style={styles.backgroundImage}
+    >
       <View style={styles.container}>
         <Logo />
         <View style={styles.bandaDatos}>
@@ -62,32 +64,39 @@ const RegistroNuevoUsuario = () => {
             />
           </View>
         </View>
-        <ButtonSiguiente />
-        <ButtonVolver />
+        <ButtonSiguiente
+          pressFunc={() =>
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 1,
+                routes: [{ name: 'Registro' }, { name: 'Login' }]
+              })
+            )
+          }
+        />
+        <ButtonVolver
+          pressFunc={() => navigation.dispatch(CommonActions.goBack())}
+        />
       </View>
     </ImageBackground>
   );
 };
 
-const ButtonSiguiente = () => {
+const ButtonSiguiente = ({ pressFunc }) => {
   return (
     <View>
       <Text>
-        <TouchableOpacity
-          style={styles.botonSiguiente}
-          onPress={() => alert('Estas seguro que quieres avanzar?')}>
-          <Text style={styles.textoboton}>Siguiente</Text>
+        <TouchableOpacity style={styles.botonSiguiente} onPress={pressFunc}>
+          <Text style={styles.textoboton}>Registrarse</Text>
         </TouchableOpacity>
       </Text>
     </View>
   );
 };
-const ButtonVolver = () => {
+const ButtonVolver = ({ pressFunc }) => {
   return (
     <View>
-      <TouchableOpacity
-        style={styles.botonVolver}
-        onPress={() => alert('Estas seguro que quieres avanzar?')}>
+      <TouchableOpacity style={styles.botonVolver} onPress={pressFunc}>
         <Text style={styles.textoboton}>Volver</Text>
       </TouchableOpacity>
     </View>
@@ -99,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   container: {
     flex: 1,
@@ -107,11 +116,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     resizeMode: 'cover',
     height: 'auto',
-    width: 'auto',
+    width: 'auto'
   },
   labelStyles: {
     color: 'black',
-    letterSpacing: 5,
+    letterSpacing: 5
   },
   botonSiguiente: {
     backgroundColor: '#0096c7',
@@ -120,7 +129,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#05769c',
     borderWidth: 2,
-    margin: 10,
+    margin: 10
   },
   botonVolver: {
     backgroundColor: '#023e8a',
@@ -129,7 +138,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: '#04306a',
     borderWidth: 2,
-    margin: 10,
+    margin: 10
   },
   textoboton: {
     color: 'white',
@@ -137,12 +146,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 8,
     textShadowColor: 'black',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 2,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   bandaDatos: {
     position: 'absolute',
@@ -154,7 +163,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10,
-    marginBottom: 10,
+    marginBottom: 10
   },
   titulo: {
     fontSize: 30,
@@ -162,8 +171,8 @@ const styles = StyleSheet.create({
     color: 'white',
     letterSpacing: 8,
     textShadowColor: 'black',
-    textShadowOffset: {width: 1, height: 1},
-    textShadowRadius: 2,
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2
   },
   inputZone: {
     backgroundColor: 'white',
@@ -171,8 +180,8 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderWidth: 3,
     marginTop: 30,
-    marginBottom: 20,
-  },
+    marginBottom: 20
+  }
 });
 
 export default RegistroNuevoUsuario;
