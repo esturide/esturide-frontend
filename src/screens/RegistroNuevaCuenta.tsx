@@ -103,14 +103,6 @@ const ButtonSiguiente = ({ pressFunc }) => {
   );
 };
 const ButtonVolver = ({ pressFunc }) => {
-  return (
-    <View>
-      <TouchableOpacity style={styles.botonVolver} onPress={pressFunc}>
-        <Text style={styles.textoboton}>Volver</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
 
 const styles = StyleSheet.create({
   backgroundImage: {
