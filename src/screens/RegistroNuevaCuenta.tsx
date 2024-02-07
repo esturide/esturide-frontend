@@ -9,8 +9,15 @@ import {
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
 import { CommonActions } from '@react-navigation/native';
+import { Controller, useForm } from 'react-hook-form';
 
 const RegistroNuevaCuenta = ({ navigation }) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+
   return (
     <ImageBackground
       source={require('../../assets/cut-Bg.jpg')}
@@ -24,64 +31,140 @@ const RegistroNuevaCuenta = ({ navigation }) => {
         </View>
         <View style={styles.inputZone}>
           <View style={styles.row}>
-            <InputBox
-              label="Nombre"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="Nombre"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.nombre}
+                />
+              )}
+              name="nombre"
+              rules={{ required: true }}
+              defaultValue={''}
             />
-            <InputBox
-              label="Apellido Paterno"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
-            />
-          </View>
-          <View style={styles.row}>
-            <InputBox
-              label="Apellido Materno"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
-            />
-            <InputBox
-              label="Código de UDG"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
-            />
-          </View>
-          <View style={styles.row}>
-            <InputBox
-              label="Fecha de Nacimiento"
-              labelStyles={styles.labelStyles}
-              inputWidth={300}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
+
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="Apellido Paterno"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.apellidoPaterno}
+                />
+              )}
+              name="apellidoPaterno"
+              rules={{ required: true }}
+              defaultValue={''}
             />
           </View>
           <View style={styles.row}>
-            <InputBox
-              label="CURP"
-              labelStyles={styles.labelStyles}
-              inputWidth={300}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="Apellido Materno"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.apellidoMaterno}
+                />
+              )}
+              name="apellidoMaterno"
+              rules={{ required: true }}
+              defaultValue={''}
+            />
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="Código de UDG"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.codigo}
+                />
+              )}
+              name="codigo"
+              rules={{ required: true }}
+              defaultValue={''}
+            />
+          </View>
+          <View style={styles.row}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="Fecha de Nacimiento"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={300}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.fechaNacimiento}
+                />
+              )}
+              name="fechaNacimiento"
+              rules={{ required: true }}
+              defaultValue={''}
+            />
+          </View>
+          <View style={styles.row}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="CURP"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={300}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.curp}
+                />
+              )}
+              name="curp"
+              rules={{ required: true }}
+              defaultValue={''}
             />
           </View>
         </View>
         <ButtonSiguiente
-          pressFunc={() => navigation.navigate('RegistroNuevoUsuario')}
+          pressFunc={handleSubmit((data) => {
+            console.log(data);
+            navigation.navigate("RegistroNuevoUsuario");
+          })}
         />
         <ButtonVolver
           pressFunc={() => navigation.dispatch(CommonActions.goBack())}
@@ -103,6 +186,14 @@ const ButtonSiguiente = ({ pressFunc }) => {
   );
 };
 const ButtonVolver = ({ pressFunc }) => {
+  return (
+    <View>
+      <TouchableOpacity style={styles.botonVolver} onPress={pressFunc}>
+        <Text style={styles.textoboton}>Volver</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   backgroundImage: {
