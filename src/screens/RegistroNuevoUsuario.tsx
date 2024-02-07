@@ -33,9 +33,20 @@ const RegistroNuevoUsuario = ({ navigation }) => {
               marginVertical={10}
               marginHorizontal={5}
             />
+          </View>
+          <View style={styles.row}>
             {/* Correo Electrónico */}
             <InputBox
-              label="Correo Electrónico"
+              label="Email"
+              labelStyles={styles.labelStyles}
+              inputWidth={150}
+              secureTextEntry={false}
+              marginVertical={10}
+              marginHorizontal={5}
+            />
+            {/* Confirmar Correo Electrónico */}
+            <InputBox
+              label="Confirmar Email"
               labelStyles={styles.labelStyles}
               inputWidth={150}
               secureTextEntry={false}
@@ -120,7 +131,8 @@ const styles = StyleSheet.create({
   },
   labelStyles: {
     color: 'black',
-    letterSpacing: 5
+    letterSpacing: 5,
+    maxWidth: 150
   },
   botonSiguiente: {
     backgroundColor: '#0096c7',

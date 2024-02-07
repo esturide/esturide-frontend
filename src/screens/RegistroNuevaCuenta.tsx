@@ -10,7 +10,7 @@ import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
 import { CommonActions } from '@react-navigation/native';
 
-const RegistroNuevaCuenta = ({navigation}) => {
+const RegistroNuevaCuenta = ({ navigation }) => {
   return (
     <ImageBackground
       source={require('../../assets/cut-Bg.jpg')}
@@ -25,7 +25,7 @@ const RegistroNuevaCuenta = ({navigation}) => {
         <View style={styles.inputZone}>
           <View style={styles.row}>
             <InputBox
-              label="Nombre/s"
+              label="Nombre"
               labelStyles={styles.labelStyles}
               inputWidth={150}
               secureTextEntry={false}
@@ -33,7 +33,7 @@ const RegistroNuevaCuenta = ({navigation}) => {
               marginHorizontal={5}
             />
             <InputBox
-              label="Primer Apellido"
+              label="Apellido Paterno"
               labelStyles={styles.labelStyles}
               inputWidth={150}
               secureTextEntry={false}
@@ -43,7 +43,7 @@ const RegistroNuevaCuenta = ({navigation}) => {
           </View>
           <View style={styles.row}>
             <InputBox
-              label="Código"
+              label="Apellido Materno"
               labelStyles={styles.labelStyles}
               inputWidth={150}
               secureTextEntry={false}
@@ -51,7 +51,7 @@ const RegistroNuevaCuenta = ({navigation}) => {
               marginHorizontal={5}
             />
             <InputBox
-              label="Segundo Apellido"
+              label="Código de UDG"
               labelStyles={styles.labelStyles}
               inputWidth={150}
               secureTextEntry={false}
@@ -69,22 +69,33 @@ const RegistroNuevaCuenta = ({navigation}) => {
               marginHorizontal={5}
             />
           </View>
+          <View style={styles.row}>
+            <InputBox
+              label="CURP"
+              labelStyles={styles.labelStyles}
+              inputWidth={300}
+              secureTextEntry={false}
+              marginVertical={10}
+              marginHorizontal={5}
+            />
+          </View>
         </View>
-        <ButtonSiguiente pressFunc={() => navigation.navigate("RegistroNuevoUsuario")}  />
-        <ButtonVolver pressFunc={() => navigation.dispatch(CommonActions.goBack())} />
+        <ButtonSiguiente
+          pressFunc={() => navigation.navigate('RegistroNuevoUsuario')}
+        />
+        <ButtonVolver
+          pressFunc={() => navigation.dispatch(CommonActions.goBack())}
+        />
       </View>
     </ImageBackground>
   );
 };
 
-const ButtonSiguiente = ({pressFunc}) => {
+const ButtonSiguiente = ({ pressFunc }) => {
   return (
     <View>
       <Text>
-        <TouchableOpacity
-          style={styles.botonSiguiente}
-          onPress={pressFunc}
-        >
+        <TouchableOpacity style={styles.botonSiguiente} onPress={pressFunc}>
           <Text style={styles.textoboton}>Siguiente</Text>
         </TouchableOpacity>
       </Text>
