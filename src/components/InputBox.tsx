@@ -24,6 +24,26 @@ type Props = {
   errors: object;
 };
 
+const RequiredErrorMsg = () => {
+  return <Text style={{ color: 'red', fontSize: 12 }}>Campo Obligatorio</Text>;
+};
+const PatternErrorMsg = () => {
+  return <Text style={{ color: 'red', fontSize: 12 }}>Campo Invalido</Text>;
+};
+
+function handleErrors(error) {
+  if (error === undefined) {
+    return;
+  }
+
+  switch (error.type) {
+    case 'required':
+      return <RequiredErrorMsg />;
+    case 'pattern':
+      return <PatternErrorMsg />;
+  }
+}
+
 const InputBox: React.FC<Props> = ({
   label,
   labelStyles,
@@ -55,11 +75,7 @@ const InputBox: React.FC<Props> = ({
         onBlur={onBlur}
         value={value}
       />
-      {errors ? (
-        <Text style={{ color: 'red' }}>Campo Obligatorio</Text>
-      ) : (
-        console.log('')
-      )}
+      {errors ? handleErrors(errors) : console.log('Input valido')}
     </View>
   );
 };
@@ -74,7 +90,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderWidth: 1,
     borderColor: '#000',
-    marginTop: 10,
+    marginTop: 5,
     fontSize: 15,
     textAlignVertical: 'center'
   },

@@ -69,7 +69,7 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="apellidoPaterno"
-              rules={{ required: true }}
+              rules={{ required: true, pattern: /^\S+@\S+$/i }}
               defaultValue={''}
             />
           </View>
