@@ -10,13 +10,33 @@ import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
 import { CommonActions } from '@react-navigation/native';
 import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const formSchema = yup.object({
+  nombre: yup.string().required('Campo Obligatorio'),
+  apellidoPaterno: yup.string().required('Campo Obligatorio'),
+  apellidoMaterno: yup.string().required('Campo Obligatorio'),
+  codigo: yup.string().required('Campo Obligatorio'),
+  fechaNacimiento: yup.string().required('Campo Obligatorio'),
+  curp: yup
+    .string()
+    .matches(
+      /^[A-Za-z]{4}\d{6}[MH][A-Za-z]{5}[A-Za-z0-9]\d$/,
+      'Formato invalido'
+    )
+    .length(18)
+    .required('Campo Obligatorio')
+});
 
 const RegistroNuevaCuenta = ({ navigation }) => {
   const {
     control,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm({
+    resolver: yupResolver(formSchema)
+  });
 
   return (
     <ImageBackground
@@ -48,7 +68,6 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="nombre"
-              rules={{ required: true }}
               defaultValue={''}
             />
 
@@ -69,7 +88,6 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="apellidoPaterno"
-              rules={{ required: true, pattern: /^\S+@\S+$/i }}
               defaultValue={''}
             />
           </View>
@@ -91,7 +109,6 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="apellidoMaterno"
-              rules={{ required: true }}
               defaultValue={''}
             />
             <Controller
@@ -111,7 +128,6 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="codigo"
-              rules={{ required: true }}
               defaultValue={''}
             />
           </View>
@@ -133,7 +149,6 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="fechaNacimiento"
-              rules={{ required: true }}
               defaultValue={''}
             />
           </View>
@@ -155,15 +170,13 @@ const RegistroNuevaCuenta = ({ navigation }) => {
                 />
               )}
               name="curp"
-              rules={{ required: true }}
               defaultValue={''}
             />
           </View>
         </View>
         <ButtonSiguiente
           pressFunc={handleSubmit((data) => {
-            console.log(data);
-            navigation.navigate("RegistroNuevoUsuario");
+            navigation.navigate('RegistroNuevoUsuario');
           })}
         />
         <ButtonVolver

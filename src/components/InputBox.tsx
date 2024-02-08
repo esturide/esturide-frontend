@@ -24,26 +24,6 @@ type Props = {
   errors: object;
 };
 
-const RequiredErrorMsg = () => {
-  return <Text style={{ color: 'red', fontSize: 12 }}>Campo Obligatorio</Text>;
-};
-const PatternErrorMsg = () => {
-  return <Text style={{ color: 'red', fontSize: 12 }}>Campo Invalido</Text>;
-};
-
-function handleErrors(error) {
-  if (error === undefined) {
-    return;
-  }
-
-  switch (error.type) {
-    case 'required':
-      return <RequiredErrorMsg />;
-    case 'pattern':
-      return <PatternErrorMsg />;
-  }
-}
-
 const InputBox: React.FC<Props> = ({
   label,
   labelStyles,
@@ -75,7 +55,11 @@ const InputBox: React.FC<Props> = ({
         onBlur={onBlur}
         value={value}
       />
-      {errors ? handleErrors(errors) : console.log('Input valido')}
+      {errors ? (
+        <Text style={{ color: 'red', fontSize: 12 }}>{errors.message}</Text>
+      ) : (
+        console.log('Input valido')
+      )}
     </View>
   );
 };
