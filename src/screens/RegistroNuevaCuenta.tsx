@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Modal,
+  Alert
 } from 'react-native';
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
@@ -12,6 +14,8 @@ import { CommonActions } from '@react-navigation/native';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import DateTimePicker from 'react-native-ui-datepicker';
+import dayjs from 'dayjs';
 
 const formSchema = yup.object({
   nombre: yup.string().required('Campo Obligatorio'),
@@ -24,8 +28,9 @@ const formSchema = yup.object({
       'len',
       'Codigo debe tener 9 digitos',
       (codigo) => codigo.toString().length === 9
-    ).required('Campo Obligatorio'),
-  fechaNacimiento: yup.string().required('Campo Obligatorio'),
+    )
+    .required('Campo Obligatorio'),
+  fechaNacimiento: yup.date().required('Campo Obligatorio'),
   curp: yup
     .string()
     .matches(
@@ -45,12 +50,42 @@ const RegistroNuevaCuenta = ({ navigation }) => {
     resolver: yupResolver(formSchema)
   });
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <ImageBackground
       source={require('../../assets/cut-Bg.jpg')}
       blurRadius={5}
       style={styles.backgroundImage}
     >
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <Controller
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View
+              style={{
+                backgroundColor: 'lightblue'
+              }}
+            >
+              <DateTimePicker
+                mode="single"
+                date={value}
+                onChange={(params) => onChange(params.date)}
+                timePicker={false}
+              />
+            </View>
+          )}
+          name="fechaNacimiento"
+          defaultValue={dayjs()}
+        />
+      </Modal>
       <View style={styles.container}>
         <Logo />
         <View style={styles.bandaDatos}>
@@ -139,25 +174,20 @@ const RegistroNuevaCuenta = ({ navigation }) => {
             />
           </View>
           <View style={styles.row}>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <InputBox
-                  onChange={onChange}
-                  onBlur={onBlur}
-                  value={value}
-                  label="Fecha de Nacimiento"
-                  labelStyles={styles.labelStyles}
-                  inputWidth={300}
-                  secureTextEntry={false}
-                  marginVertical={10}
-                  marginHorizontal={5}
-                  errors={errors.fechaNacimiento}
-                />
+            <View>
+              <Text style={styles.labelStyles}>Fecha de Nacimiento</Text>
+              <TouchableOpacity
+                style={styles.botonNacimiento}
+                onPress={() => setModalVisible(true)}
+              >
+                <Text style={styles.textoNacimiento}>Placeholder</Text>
+              </TouchableOpacity>
+              {errors.fechaNacimiento && (
+                <Text style={{ color: 'red', fontSize: 12, marginTop: 10 }}>
+                  {errors.fechaNacimiento.message}
+                </Text>
               )}
-              name="fechaNacimiento"
-              defaultValue={''}
-            />
+            </View>
           </View>
           <View style={styles.row}>
             <Controller
@@ -293,6 +323,15 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     marginTop: 30,
     marginBottom: 10
+  },
+  botonNacimiento: {
+    backgroundColor: '#fcfcfc',
+    borderColor: 'black',
+    borderWidth: 1,
+    marginTop: 3,
+  },
+  textoNacimiento: {
+    color: 'black'
   }
 });
 
