@@ -18,6 +18,10 @@ type Props = {
   secureTextEntry: boolean;
   marginVertical: number;
   marginHorizontal: number;
+  onChange: Function;
+  onBlur: Function;
+  value: any;
+  errors: object;
 };
 
 const InputBox: React.FC<Props> = ({
@@ -26,19 +30,36 @@ const InputBox: React.FC<Props> = ({
   inputWidth,
   secureTextEntry,
   marginVertical,
-  marginHorizontal
+  marginHorizontal,
+  onChange,
+  onBlur,
+  value,
+  errors
 }) => {
   return (
     <View
       style={{
         marginVertical: marginVertical,
         marginHorizontal: marginHorizontal
-      }}>
+      }}
+    >
       <Text style={labelStyles}>{label}</Text>
       <TextInput
-        style={[styles.inputBox, { width: inputWidth }]}
+        style={[
+          styles.inputBox,
+          { width: inputWidth },
+          errors ? styles.errorStyles : console.log('')
+        ]}
         secureTextEntry={secureTextEntry}
+        onChangeText={(value) => onChange(value)}
+        onBlur={onBlur}
+        value={value}
       />
+      {errors ? (
+        <Text style={{ color: 'red', fontSize: 12 }}>{errors.message}</Text>
+      ) : (
+        console.log('Input valido')
+      )}
     </View>
   );
 };
@@ -51,11 +72,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 0,
     borderRadius: 20,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: '#000',
-    marginVertical: 10,
+    marginTop: 5,
     fontSize: 15,
     textAlignVertical: 'center'
+  },
+  errorStyles: {
+    borderColor: '#dd2c2f',
+    backgroundColor: '#f6cacc77'
   }
 });
 

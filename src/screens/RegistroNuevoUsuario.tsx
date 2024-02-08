@@ -9,8 +9,32 @@ import {
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
 import { CommonActions } from '@react-navigation/native';
+import { Controller, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const formSchema = yup.object({
+  user: yup.string().required('Campo Obligatorio'),
+  email: yup.string().email('Formato Invalido').required('Campo Obligatorio'),
+  confirmEmail: yup
+    .string()
+    .oneOf([yup.ref('email'), null], 'Los correos no coinciden')
+    .required('Campo Obligatorio'),
+  password: yup.string().required('Campo Obligatorio'),
+  confirmPass: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Contraseñas no coinciden')
+    .required('Campo Obligatorio')
+});
 
 const RegistroNuevoUsuario = ({ navigation }) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(formSchema)
+  });
   return (
     <ImageBackground
       source={require('../../assets/cut-Bg.jpg')}
@@ -25,54 +49,125 @@ const RegistroNuevoUsuario = ({ navigation }) => {
         <View style={styles.inputZone}>
           <View style={styles.row}>
             {/* Nombre de Usuario */}
-            <InputBox
-              label="Nombre de Usuario"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  label="Nombre de Usuario"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                  errors={errors.user}
+                />
+              )}
+              name="user"
+              rules={{ required: true }}
+              defaultValue={''}
             />
+          </View>
+          <View style={styles.row}>
             {/* Correo Electrónico */}
-            <InputBox
-              label="Correo Electrónico"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={false}
-              marginVertical={10}
-              marginHorizontal={5}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  errors={errors.email}
+                  label="Email"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                />
+              )}
+              name="email"
+              rules={{ required: true }}
+              defaultValue={''}
+            />
+            {/* Confirmar Correo Electrónico */}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  errors={errors.confirmEmail}
+                  label="Confirmar Email"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={false}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                />
+              )}
+              name="confirmEmail"
+              rules={{ required: true }}
+              defaultValue={''}
             />
           </View>
           <View style={styles.row}>
             {/* Contraseña */}
-            <InputBox
-              label="Contraseña"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={true}
-              marginVertical={10}
-              marginHorizontal={5}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  errors={errors.confirmEmail}
+                  label="Contraseña"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={true}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                />
+              )}
+              name="password"
+              rules={{ required: true }}
+              defaultValue={''}
             />
             {/* Confirmar Contraseña */}
-            <InputBox
-              label="Confirmar Contraseña"
-              labelStyles={styles.labelStyles}
-              inputWidth={150}
-              secureTextEntry={true}
-              marginVertical={10}
-              marginHorizontal={5}
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <InputBox
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  errors={errors.confirmPass}
+                  label="Confirmar Contraseña"
+                  labelStyles={styles.labelStyles}
+                  inputWidth={150}
+                  secureTextEntry={true}
+                  marginVertical={10}
+                  marginHorizontal={5}
+                />
+              )}
+              name="confirmPass"
+              rules={{ required: true }}
+              defaultValue={''}
             />
           </View>
         </View>
         <ButtonSiguiente
-          pressFunc={() =>
+          pressFunc={handleSubmit((data) =>
             navigation.dispatch(
               CommonActions.reset({
                 index: 1,
                 routes: [{ name: 'Registro' }, { name: 'Login' }]
               })
             )
-          }
+          )}
         />
         <ButtonVolver
           pressFunc={() => navigation.dispatch(CommonActions.goBack())}
@@ -120,7 +215,8 @@ const styles = StyleSheet.create({
   },
   labelStyles: {
     color: 'black',
-    letterSpacing: 5
+    letterSpacing: 5,
+    maxWidth: 150
   },
   botonSiguiente: {
     backgroundColor: '#0096c7',
