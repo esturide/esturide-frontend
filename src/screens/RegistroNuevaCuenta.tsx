@@ -17,7 +17,14 @@ const formSchema = yup.object({
   nombre: yup.string().required('Campo Obligatorio'),
   apellidoPaterno: yup.string().required('Campo Obligatorio'),
   apellidoMaterno: yup.string().required('Campo Obligatorio'),
-  codigo: yup.string().required('Campo Obligatorio'),
+  codigo: yup
+    .number()
+    .typeError('El codigo debe ser un numero')
+    .test(
+      'len',
+      'Codigo debe tener 9 digitos',
+      (codigo) => codigo.toString().length === 9
+    ).required('Campo Obligatorio'),
   fechaNacimiento: yup.string().required('Campo Obligatorio'),
   curp: yup
     .string()
