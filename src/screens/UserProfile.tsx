@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -14,18 +14,17 @@ import MessageButton from '../components/MessageButton';
 import BottomAd from '../components/BottomAd';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import EditButton from '../components/EditButton';
 
 const UserProfile = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
       <ProfileImage bgColor={'#00b4d8'} borderColor={'#023e8a'} />
       <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
-        <View style={styles.editBtn}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons name={'pencil'} color={'black'} size={30} />
-          </TouchableOpacity>
-        </View>
+        <EditButton />
         <TextInfo title={'Nombre:'} content={'Gesem Hanniel Martinez Montes'} />
         <TextInfo title={'Codigo:'} content={'222952617'} />
         <TextInfo title={'Capital:'} content={'$100.00'} />
@@ -48,11 +47,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#caf0f8',
     flex: 1,
     alignItems: 'center'
-  },
-  editBtn: {
-    position: 'absolute',
-    top: 12,
-    right: 12
   },
   userInfoContainer: {
     width: 350,
