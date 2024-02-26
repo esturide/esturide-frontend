@@ -1,10 +1,19 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet, Pressable } from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Modal
+} from 'react-native';
 import ProfileImage from '../components/ProfileImage';
 import AccountButton from '../components/AccountButton';
 import TextInfo from '../components/TextInfo';
 import MessageButton from '../components/MessageButton';
 import BottomAd from '../components/BottomAd';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const UserProfile = () => {
   return (
@@ -12,6 +21,11 @@ const UserProfile = () => {
       <ProfileImage bgColor={'#00b4d8'} borderColor={'#023e8a'} />
       <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
+        <View style={styles.editBtn}>
+          <TouchableOpacity>
+            <MaterialCommunityIcons name={'pencil'} color={'black'} size={30} />
+          </TouchableOpacity>
+        </View>
         <TextInfo title={'Nombre:'} content={'Gesem Hanniel Martinez Montes'} />
         <TextInfo title={'Codigo:'} content={'222952617'} />
         <TextInfo title={'Capital:'} content={'$100.00'} />
@@ -35,8 +49,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
+  editBtn: {
+    position: 'absolute',
+    top: 12,
+    right: 12
+  },
   userInfoContainer: {
-    width: 325,
+    width: 350,
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: 'black',
@@ -44,8 +63,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingVertical: 15,
-    paddingHorizontal: 25,
+    paddingVertical: 20,
+    paddingHorizontal: 30,
     rowGap: 15,
     shadowColor: 'black',
     elevation: 8
