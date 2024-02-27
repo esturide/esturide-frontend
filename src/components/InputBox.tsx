@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     shadowOffset: {
       height: 1,
       width: 1
-    },
+    }
   },
   errorStyles: {
     borderColor: '#dd2c2f',
