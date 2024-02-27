@@ -37,11 +37,16 @@ const EditProfile = ({ modalState, setModalState }) => {
   const [date, setDate] = useState(dayjs());
   const {
     control,
+    reset,
     handleSubmit,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(formSchema)
   });
+
+  const handleReset = () => {
+    reset({});
+  };
 
   return (
     <Modal
@@ -54,7 +59,10 @@ const EditProfile = ({ modalState, setModalState }) => {
         <Text style={styles.editTitle}>Editar Perfil</Text>
         <TouchableOpacity
           style={styles.editCancelBtn}
-          onPress={() => setModalState(false)}
+          onPress={() => {
+            handleReset();
+            setModalState(false);
+          }}
         >
           <Text style={styles.editCancelText}>Cancelar</Text>
         </TouchableOpacity>
@@ -165,6 +173,7 @@ const EditProfile = ({ modalState, setModalState }) => {
               onPress={handleSubmit((data) => {
                 console.log(dayjs(data.fechaNacimiento).format('DD-MM-YYYY'));
                 setModalState(false);
+                handleReset();
               })}
             >
               <Text style={styles.editSubmitText}>Guardar Cambios</Text>
