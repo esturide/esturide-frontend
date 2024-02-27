@@ -76,11 +76,16 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     marginTop: 5,
     fontSize: 15,
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
+    elevation: 1,
+    shadowOffset: {
+      height: 1,
+      width: 1
+    }
   },
   errorStyles: {
     borderColor: '#dd2c2f',
-    backgroundColor: '#f6cacc77'
+    backgroundColor: '#ffcacc'
   }
 });
 

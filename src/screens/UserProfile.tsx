@@ -1,17 +1,36 @@
-import React from 'react';
-import { SafeAreaView, View, Text, StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  Modal,
+  TouchableOpacity
+} from 'react-native';
 import ProfileImage from '../components/ProfileImage';
 import AccountButton from '../components/AccountButton';
 import TextInfo from '../components/TextInfo';
 import MessageButton from '../components/MessageButton';
 import BottomAd from '../components/BottomAd';
+import EditButton from '../components/EditButton';
+import InputBox from '../components/InputBox';
+import DateTimePicker from 'react-native-ui-datepicker';
+import dayjs from 'dayjs';
+import 'dayjs/locale/es-mx';
+import { ScrollView } from 'react-native-gesture-handler';
+import EditProfile from './EditProfile';
 
 const UserProfile = () => {
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
+      <EditProfile modalState={modalVisible} setModalState={setModalVisible} />
       <ProfileImage bgColor={'#00b4d8'} borderColor={'#023e8a'} />
       <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
+        <EditButton onPress={() => setModalVisible(true)} />
         <TextInfo title={'Nombre:'} content={'Gesem Hanniel Martinez Montes'} />
         <TextInfo title={'Codigo:'} content={'222952617'} />
         <TextInfo title={'Capital:'} content={'$100.00'} />
@@ -36,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   userInfoContainer: {
-    width: 325,
+    width: 350,
     backgroundColor: 'white',
     borderWidth: 1,
     borderColor: 'black',
@@ -44,8 +63,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    paddingVertical: 15,
-    paddingHorizontal: 25,
+    paddingVertical: 20,
+    paddingHorizontal: 30,
     rowGap: 15,
     shadowColor: 'black',
     elevation: 8

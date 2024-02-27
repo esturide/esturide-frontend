@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 30,
     position: 'absolute',
-    top: '65%',
+    top: '80%',
     right: 10
   }
 });
