@@ -19,7 +19,18 @@ const formSchema = yup.object({
   nombre: yup.string().required('Campo Obligatorio'),
   apellidoPaterno: yup.string().required('Campo Obligatorio'),
   apellidoMaterno: yup.string().required('Campo Obligatorio'),
-  fechaNacimiento: yup.date().required('Campo Obligatorio')
+  fechaNacimiento: yup
+    .date()
+    .transform(function(value, originalValue) {
+      if (this.isType(value)) {
+        return value;
+      }
+      const result = parse(originalValue, 'dd.MM.yyyy', new Date());
+      return result;
+    })
+    .typeError('Ingresa una fecha valida')
+    .required('Campo Obligatorio')
+    .max('2006-01-01', 'Fecha Invalida')
 });
 
 const EditProfile = ({ modalState, setModalState }) => {
@@ -116,11 +127,6 @@ const EditProfile = ({ modalState, setModalState }) => {
           </View>
           <View style={{ marginVertical: 20 }}>
             <Text style={styles.editLabels}>Fecha de Nacimiento:</Text>
-            {errors.fechaNacimiento && (
-              <Text style={{ color: 'red', fontSize: 12, marginTop: 10 }}>
-                {errors.fechaNacimiento.message}
-              </Text>
-            )}
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -146,13 +152,18 @@ const EditProfile = ({ modalState, setModalState }) => {
               name="fechaNacimiento"
               defaultValue={dayjs().toDate()}
             />
+            {errors.fechaNacimiento && (
+              <Text style={{ color: 'red', fontSize: 12, marginTop: 10 }}>
+                {errors.fechaNacimiento.message}
+              </Text>
+            )}
           </View>
 
           <View style={styles.editProfileButtons}>
             <TouchableOpacity
               style={styles.editSubmitBtn}
               onPress={handleSubmit((data) => {
-                console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+                console.log(dayjs(data.fechaNacimiento).format('DD-MM-YYYY'));
                 setModalState(false);
               })}
             >
@@ -176,6 +187,13 @@ const styles = StyleSheet.create({
       width: 3
     },
     marginVertical: 15
+  },
+  modalContentWrapper: {
+    height: '80%',
+    borderTopRightRadius: 16,
+    borderTopLeftRadius: 16,
+    backgroundColor: 'white',
+    marginTop: 'auto'
   },
   editProfileHeader: {
     flexDirection: 'row',
