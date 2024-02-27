@@ -135,6 +135,11 @@ const EditProfile = ({ modalState, setModalState }) => {
           </View>
           <View style={{ marginVertical: 20 }}>
             <Text style={styles.editLabels}>Fecha de Nacimiento:</Text>
+            {errors.fechaNacimiento && (
+              <Text style={{ color: 'red', fontSize: 12, marginTop: 10 }}>
+                {errors.fechaNacimiento.message}
+              </Text>
+            )}
             <Controller
               control={control}
               render={({ field: { onChange, onBlur, value } }) => (
@@ -160,11 +165,6 @@ const EditProfile = ({ modalState, setModalState }) => {
               name="fechaNacimiento"
               defaultValue={dayjs().toDate()}
             />
-            {errors.fechaNacimiento && (
-              <Text style={{ color: 'red', fontSize: 12, marginTop: 10 }}>
-                {errors.fechaNacimiento.message}
-              </Text>
-            )}
           </View>
 
           <View style={styles.editProfileButtons}>
