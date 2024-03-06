@@ -25,8 +25,7 @@ import { useGetUserData } from '../hooks/userGetUserData';
 const UserProfile = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, userData] = useGetUserData();
-
-  console.log(userData, loading);
+  console.log(userData);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,9 +34,11 @@ const UserProfile = () => {
       <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
         <EditButton onPress={() => setModalVisible(true)} />
-        <TextInfo title={'Nombre:'} content={'Gesem Hanniel Martinez Montes'} />
-        <TextInfo title={'Codigo:'} content={'222952617'} />
-        <TextInfo title={'Capital:'} content={'$100.00'} />
+        <TextInfo title={'Nombre:'} content={`${userData['firstname']} ${userData['paternal_surname']} ${userData['maternal_surname']}`} />
+        <View style={styles.textWrapper}>
+          <TextInfo title={'Codigo:'} content={'222952617'} />
+          <TextInfo title={'Capital:'} content={'$100.00'} />
+        </View>
       </View>
       <Pressable
         style={styles.vehicleRegister}
@@ -64,14 +65,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     borderRadius: 16,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    flexDirection: 'column',
+    gap: 20,
     paddingVertical: 20,
     paddingHorizontal: 30,
-    rowGap: 15,
     shadowColor: 'black',
     elevation: 8
+  },
+  textWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   vehicleRegister: {
     marginTop: 45
