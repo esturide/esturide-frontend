@@ -20,9 +20,13 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/es-mx';
 import { ScrollView } from 'react-native-gesture-handler';
 import EditProfile from './EditProfile';
+import { useGetUserData } from '../hooks/userGetUserData';
 
 const UserProfile = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, userData] = useGetUserData();
+
+  console.log(userData, loading);
 
   return (
     <SafeAreaView style={styles.container}>
