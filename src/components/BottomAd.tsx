@@ -4,7 +4,7 @@ import {
   BannerAdSize,
   TestIds
 } from 'react-native-google-mobile-ads';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 const BottomAd = () => {
   return (

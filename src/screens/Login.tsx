@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
-  TouchableHighlight
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Logo from '../components/Logo';

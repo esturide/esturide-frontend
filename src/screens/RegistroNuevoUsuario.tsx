@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  View,
-  Text,
   ImageBackground,
   StyleSheet,
-  TouchableOpacity
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';

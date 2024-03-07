@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import {
   Modal,
-  View,
+  ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  ScrollView,
-  StyleSheet
+  View
 } from 'react-native';
 import InputBox from '../components/InputBox';
 import DateTimePicker from 'react-native-ui-datepicker';
@@ -21,7 +21,7 @@ const formSchema = yup.object({
   apellidoMaterno: yup.string().required('Campo Obligatorio'),
   fechaNacimiento: yup
     .date()
-    .transform(function(value, originalValue) {
+    .transform(function (value, originalValue) {
       if (this.isType(value)) {
         return value;
       }

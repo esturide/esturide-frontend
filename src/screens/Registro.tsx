@@ -1,11 +1,11 @@
 import React from 'react';
 import Logo from '../../src/components/Logo';
 import {
-  StyleSheet,
-  View,
   ImageBackground,
+  StyleSheet,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from 'react-native';
 
 const Registro: Element = ({ navigation }) => {
@@ -48,10 +48,7 @@ const ButtonInicioSesion = ({ pressFunc }) => {
 const ButtonRegistro = ({ pressFunc }) => {
   return (
     <View>
-      <TouchableOpacity
-        style={styles.botonRegistro}
-        onPress={pressFunc}
-      >
+      <TouchableOpacity style={styles.botonRegistro} onPress={pressFunc}>
         <Text style={styles.textoboton}>Registrate</Text>
       </TouchableOpacity>
     </View>

@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Modal,
-  TouchableOpacity
-} from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import ProfileImage from '../components/ProfileImage';
 import AccountButton from '../components/AccountButton';
 import TextInfo from '../components/TextInfo';
 import MessageButton from '../components/MessageButton';
 import BottomAd from '../components/BottomAd';
 import EditButton from '../components/EditButton';
-import InputBox from '../components/InputBox';
-import DateTimePicker from 'react-native-ui-datepicker';
-import dayjs from 'dayjs';
 import 'dayjs/locale/es-mx';
-import { ScrollView } from 'react-native-gesture-handler';
 import EditProfile from './EditProfile';
 
 const UserProfile = () => {

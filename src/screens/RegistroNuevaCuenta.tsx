@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import {
-  View,
-  Text,
   ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
   Modal,
-  Alert
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import InputBox from '../../src/components/InputBox';
 import Logo from '../../src/components/Logo';
@@ -328,7 +327,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fcfcfc',
     borderColor: 'black',
     borderWidth: 1,
-    marginTop: 3,
+    marginTop: 3
   },
   textoNacimiento: {
     color: 'black'
