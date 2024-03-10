@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Button,
   Modal,
   ScrollView,
   StyleSheet,
@@ -16,8 +15,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useGetUserData } from '../hooks/userGetUserData';
-import { useSetUserData } from '../hooks/userSetUserData';
-import { REACT_APP_API_ENDPOINT } from '@env';
+import { setUserData } from '../utils/userData.ts';
 
 const formSchema = yup.object({
   nombre: yup.string().required('Campo Obligatorio'),
@@ -98,7 +96,7 @@ const EditProfile = ({ modalState, setModalState }) => {
                   errors={errors.nombre}
                 />
               )}
-              name="nombre"
+              name="firstname"
               defaultValue=""
             />
             <Controller
@@ -116,7 +114,7 @@ const EditProfile = ({ modalState, setModalState }) => {
                   errors={errors.apellidoPaterno}
                 />
               )}
-              name="apellidoPaterno"
+              name="paternal_surname"
               defaultValue=""
             />
             <Controller
@@ -134,7 +132,7 @@ const EditProfile = ({ modalState, setModalState }) => {
                   errors={errors.apellidoMaterno}
                 />
               )}
-              name="apellidoMaterno"
+              name="maternal_surname"
               defaultValue=""
             />
           </View>
@@ -181,15 +179,15 @@ const EditProfile = ({ modalState, setModalState }) => {
 
                 handleReset();
 
-                fetch(`${REACT_APP_API_ENDPOINT}/users/1`, {
-                  method: 'POST',
-                  body: JSON.stringify(data),
-                  headers: {
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDEsImV4cCI6MTcxMTY2MjY3OH0.yJEfuBfNQVsgvfNaXwb0CfzgH_UUOUHowO5iLnk_sNo'}`,
-                    'Content-Type': 'application/json'
-                  }
-                });
+                try {
+                  setUserData(
+                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDEsImV4cCI6MTcxMTY2MjY3OH0.yJEfuBfNQVsgvfNaXwb0CfzgH_UUOUHowO5iLnk_sNo',
+                    1,
+                    data
+                  );
+                } catch (e) {
+                  /* TODO */
+                }
               })}
             >
               <Text style={styles.editSubmitText}>Guardar Cambios</Text>

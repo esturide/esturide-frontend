@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { REACT_APP_API_ENDPOINT } from '@env';
+import { useEffect, useState } from 'react';
+import { getUserData } from '../utils/userData.ts';
 
 export const useGetUserData = () => {
   const [loading, setLoading] = useState(true);
@@ -9,17 +9,15 @@ export const useGetUserData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await fetch(`${REACT_APP_API_ENDPOINT}/users/1`, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDEsImV4cCI6MTcxMTY2MjY3OH0.yJEfuBfNQVsgvfNaXwb0CfzgH_UUOUHowO5iLnk_sNo'}`
-          }
-        });
+        const result = await getUserData(
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDEsImV4cCI6MTcxMTY2MjY3OH0.yJEfuBfNQVsgvfNaXwb0CfzgH_UUOUHowO5iLnk_sNo',
+          1
+        );
         const data = await result.json();
         setUserData(data);
       } catch (error) {
         console.log('Error fetching data', error);
-        setErr(error);
+        setErr(err);
       } finally {
         setLoading(false);
       }

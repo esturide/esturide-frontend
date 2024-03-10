@@ -1,30 +1,19 @@
 import React, { useState } from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  Modal,
-  TouchableOpacity
-} from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import ProfileImage from '../components/ProfileImage';
 import AccountButton from '../components/AccountButton';
 import TextInfo from '../components/TextInfo';
 import MessageButton from '../components/MessageButton';
 import BottomAd from '../components/BottomAd';
 import EditButton from '../components/EditButton';
-import InputBox from '../components/InputBox';
-import DateTimePicker from 'react-native-ui-datepicker';
-import dayjs from 'dayjs';
 import 'dayjs/locale/es-mx';
-import { ScrollView } from 'react-native-gesture-handler';
 import EditProfile from './EditProfile';
 import { useGetUserData } from '../hooks/userGetUserData';
 
 const UserProfile = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, userData] = useGetUserData();
+
   console.log(userData);
 
   return (
@@ -34,7 +23,10 @@ const UserProfile = () => {
       <AccountButton label={'Pasajero'} />
       <View style={styles.userInfoContainer}>
         <EditButton onPress={() => setModalVisible(true)} />
-        <TextInfo title={'Nombre:'} content={`${userData['firstname']} ${userData['paternal_surname']} ${userData['maternal_surname']}`} />
+        <TextInfo
+          title={'Nombre:'}
+          content={`${userData['firstname']} ${userData['paternal_surname']} ${userData['maternal_surname']}`}
+        />
         <View style={styles.textWrapper}>
           <TextInfo title={'Codigo:'} content={'222952617'} />
           <TextInfo title={'Capital:'} content={'$100.00'} />
