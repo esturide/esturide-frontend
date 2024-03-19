@@ -20,3 +20,15 @@ export const getUserData = async (bearer: string, id: number) => {
     }
   });
 };
+
+export const getAuthToken = async (username: string) => {
+  return await fetch(`${REACT_APP_API_ENDPOINT}/login`, {
+    method: 'POST',
+    body: JSON.stringify({
+      username: username
+    }),
+    headers: {
+      Accept: 'application/json'
+    }
+  });
+};
