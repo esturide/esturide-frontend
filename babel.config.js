@@ -1,6 +1,6 @@
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
-    plugins: [
+  plugins: [
     [
       'module:react-native-dotenv',
       {
@@ -10,8 +10,8 @@ module.exports = {
         allowlist: null,
         safe: false,
         allowUndefined: true,
-        verbose: false,
-      },
-    ],
-  ],
+        verbose: false
+      }
+    ]
+  ]
 };

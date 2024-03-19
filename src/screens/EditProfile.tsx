@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import {
   Modal,
-  View,
+  ScrollView,
+  StyleSheet,
   Text,
   TouchableOpacity,
-  ScrollView,
-  StyleSheet
+  View
 } from 'react-native';
 import InputBox from '../components/InputBox';
 import DateTimePicker from 'react-native-ui-datepicker';
-import 'dayjs/locale/es-mx';
 import dayjs from 'dayjs';
-import * as yup from 'yup';
+import 'dayjs/locale/es-mx';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useGetUserData } from '../hooks/userGetUserData';
+import { setUserData } from '../utils/userData.ts';
 
 const formSchema = yup.object({
   nombre: yup.string().required('Campo Obligatorio'),
@@ -21,7 +23,7 @@ const formSchema = yup.object({
   apellidoMaterno: yup.string().required('Campo Obligatorio'),
   fechaNacimiento: yup
     .date()
-    .transform(function(value, originalValue) {
+    .transform(function (value, originalValue) {
       if (this.isType(value)) {
         return value;
       }
@@ -35,6 +37,7 @@ const formSchema = yup.object({
 
 const EditProfile = ({ modalState, setModalState }) => {
   const [date, setDate] = useState(dayjs());
+  const [loading, userData] = useGetUserData();
   const {
     control,
     reset,
@@ -93,7 +96,7 @@ const EditProfile = ({ modalState, setModalState }) => {
                   errors={errors.nombre}
                 />
               )}
-              name="nombre"
+              name="firstname"
               defaultValue=""
             />
             <Controller
@@ -111,7 +114,7 @@ const EditProfile = ({ modalState, setModalState }) => {
                   errors={errors.apellidoPaterno}
                 />
               )}
-              name="apellidoPaterno"
+              name="paternal_surname"
               defaultValue=""
             />
             <Controller
@@ -129,7 +132,7 @@ const EditProfile = ({ modalState, setModalState }) => {
                   errors={errors.apellidoMaterno}
                 />
               )}
-              name="apellidoMaterno"
+              name="maternal_surname"
               defaultValue=""
             />
           </View>
@@ -173,7 +176,18 @@ const EditProfile = ({ modalState, setModalState }) => {
               onPress={handleSubmit((data) => {
                 console.log(dayjs(data.fechaNacimiento).format('DD-MM-YYYY'));
                 setModalState(false);
+
                 handleReset();
+
+                try {
+                  setUserData(
+                    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMDEsImV4cCI6MTcxMTY2MjY3OH0.yJEfuBfNQVsgvfNaXwb0CfzgH_UUOUHowO5iLnk_sNo',
+                    1,
+                    data
+                  );
+                } catch (e) {
+                  /* TODO */
+                }
               })}
             >
               <Text style={styles.editSubmitText}>Guardar Cambios</Text>
